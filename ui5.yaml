@@ -1,0 +1,7 @@
+specVersion: '2.2'
+metadata:
+  name: lx-course-oct20-mazhylouski-artsiom-sapui5
+type: application
+framework:
+  name: OpenUI5
+  version: "1.82.2"

@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog title="Create a new store" id="storeCreator">
+        <f:SimpleForm maxContainerCols="1" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+        <f:content>
+            <!-- Name -->
+            <Label text="{i18n>ProductName}"/>
+            <Input
+                value="{
+                    path: 'Name',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 2,
+                        maxLength: 15
+                    }
+                }"
+                required="true"
+                placeholder="{i18n>ProducPlaceholdertName}" />
+            <!-- Email -->
+            <Label text="{i18n>StoreEmail}" />
+            <Input
+                value="{
+                    path: 'Email',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 3,
+                        maxLength: 50,
+                        contains: '@'
+                        }
+                }"
+                required="true"
+                placeholder="{i18n>StorePlaceholderEmail}"/>
+            <!-- Phone -->
+            <Label text="{i18n>StorePhone}"/>
+            <Input
+                value="{
+					path: 'PhoneNumber',
+					type: 'sap.ui.model.type.Float',
+					formatOptions: {
+						decimals: 0
+					},
+					constraints: {
+						minimum: 100000,
+						maximum: 100000000000000000000
+					}
+				}"
+                required="true"
+                placeholder="{i18n>StorePlaceholderPhone}"/>
+            <!-- Address -->
+            <Label text="{i18n>StoreAddress}"/>
+            <Input
+                value="{
+                    path: 'Address',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1,
+                        maxLength: 100
+                    }
+                }"
+                required="true"
+                placeholder="{i18n>StorePlaceholderAddress}" />
+            <!-- Date -->
+            <Label text="{i18n>StoreEstablished}"/>
+            <DatePicker
+                value="{
+					path: 'Established',
+					type: 'sap.ui.model.type.Date'
+				}"
+                valueFormat="yyyy-MM-dd"
+                required="true"/>
+            <!-- FloorArea -->
+            <Label text="{i18n>StoreFloorArea}"/>
+            <Input
+                value="{
+					path: 'FloorArea',
+					type: 'sap.ui.model.type.Float',
+					formatOptions: {
+						decimals: 0
+					},
+					constraints: {
+						minimum: 1,
+						maximum: 10000000000
+					}
+				}"
+                required="true"
+                placeholder="{i18n>StorePlaceholderFloorArea}"/>
+        </f:content>
+        </f:SimpleForm>
+        <!-- Buttons -->
+        <buttons>
+            <Button
+                type="Emphasized"
+                text="{i18n>Create}"
+                press="onDialogCreateStorePress"/>
+            <Button
+                text="{i18n>Cancel}"
+                press="onCancelCreateStorePress"
+                />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

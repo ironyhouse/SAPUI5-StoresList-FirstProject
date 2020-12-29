@@ -1,0 +1,41 @@
+<mvc:View xmlns:f="sap.f"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" controllerName="sap.ui.SearchStores.controller.Stores">
+    <f:DynamicPage showFooter="true" class="sapUiNoContentPadding">
+        <f:title>
+            <!-- Title -->
+            <f:DynamicPageTitle >
+                <f:heading>
+                    <VBox>
+                        <Breadcrumbs >
+                            <Link text="{i18n>StoresList}"/>
+                        </Breadcrumbs>
+                        <Title text="{i18n>Stores}" titleStyle="H2" />
+                    </VBox>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- Search -->
+        <f:header>
+            <f:DynamicPageHeader >
+                <SearchField id="StoreSearch" search="onStoreSearch" placeholder="{i18n>SearchListPlaceholder}" showRefreshButton="true"/>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <!-- Store List -->
+            <List id="StoreList" items="{odata>/Stores}">
+                <ObjectListItem title="{odata>Name}" type="Active" press=".onPressListItem" number="{odata>FloorArea}" numberUnit="{i18n>StoreUnit}">
+                    <ObjectAttribute text="{odata>Address}" />
+                </ObjectListItem>
+            </List>
+        </f:content>
+        <f:footer>
+            <OverflowToolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button text="{i18n>CreateStore}" icon="sap-icon://add" press="onOpenStoreFormCreator" />
+                </content>
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,98 @@
+<mvc:View xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f" controllerName="sap.ui.SearchStores.controller.ProductDetails">
+    <f:DynamicPage>
+        <f:title>
+            <!-- Title -->
+            <f:DynamicPageTitle >
+                <f:heading>
+                    <VBox>
+                        <Breadcrumbs>
+                            <Link text="{i18n>StoresList}" press=".navStart"/>
+                            <Link text="{i18n>StoreDetails}" press=".navBack"/>
+                            <Link text="{i18n>StoreDetails}" />
+                        </Breadcrumbs>
+                        <Title text="{i18n>ProductName}: {odata>Name}" titleStyle="H2" />
+                    </VBox>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <!-- Product Info -->
+            <f:DynamicPageHeader>
+                <FlexBox alignContent="Start" alignItems="Start" class="sapUiTinyMarginBottom" wrap="Wrap">
+                    <VBox class="sapUiSmallMarginEnd">
+                        <HBox>
+                            <Label text="{i18n>ProductPrice}:" design="Bold" class="sapUiTinyMarginEnd" />
+                            <Text text="{odata>Price}"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="{i18n>ProductRating}:" design="Bold" class="sapUiTinyMarginEnd" />
+                            <Text text="{odata>Rating}"/>
+                        </HBox>
+                    </VBox>
+                    <VBox class="sapUiSmallMarginEnd">
+                        <HBox>
+                            <Label text="{i18n>ProductMadeIn}:" design="Bold" class="sapUiTinyMarginEnd" />
+                            <Text text="{odata>MadeIn}"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="{i18n>ProductStatus}" design="Bold" class="sapUiTinyMarginEnd" />
+                            <ObjectStatus text="{odata>Status}" inverted="true" state="{
+                                path: 'odata>Status',
+                                formatter: '.changeStatusColor'
+							}" />
+                        </HBox>
+                    </VBox>
+                    <VBox>
+                        <HBox>
+                            <Label text="{i18n>ProductCompany}" design="Bold" class="sapUiTinyMarginEnd" />
+                            <Text text="{odata>ProductionCompanyName}" />
+                        </HBox>
+                    </VBox>
+                </FlexBox>
+                <FlexBox direction="Row" wrap="Wrap">
+                    <HBox class="sapUiTinyMarginBottom" wrap="Wrap">
+                        <Label text="{i18n>ProductSpecs}:" design="Bold" class="sapUiTinyMarginEnd">
+                        </Label>
+                        <Text width="100%" text="{odata>Specs}" maxLines="3" />
+                    </HBox>
+                    <HBox wrap="Wrap">
+                        <Label text="{i18n>ProductSupplierInfo}:" design="Bold" class="sapUiTinyMarginEnd" />
+                        <Text width="100%" text="{odata>SupplierInfo}" maxLines="3" />
+                    </HBox>
+                </FlexBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <!-- Create Comment -->
+            <FlexBox direction="Column">
+                <HBox direction="Row" wrap="Wrap">
+                    <!-- Name -->
+                    <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                        <Label text="{i18n>CommentAuthor}:" class="sapUiSmallMarginEnd"/>
+                        <Input value="{ path: 'oCreateComment>/Author'}" id="commentAuthor" placeholder="{i18n>CommentAuthorPlaceholder}"/>
+                    </HBox>
+                    <!-- Rating -->
+                    <HBox alignItems="Center">
+                        <Label text="{i18n>CommentRating}:" class="sapUiSmallMarginEnd"/>
+                        <RatingIndicator id="commentRating" value="{ path: 'oCreateComment>/Rating'}" />
+                    </HBox>
+                </HBox>
+                <!-- Comment Input -->
+                <FeedInput id="CommentsTextInput" value="{ path: 'oCreateComment>/Message'}" post="onPostPress" icon="sap-icon://person-placeholder" class="sapUiSmallMarginTopBottom" />
+                <!-- Comments -->
+                <List id="CommentsList" showSeparators="Inner" items="{odata>/ProductComments/}">
+                    <FeedListItem sender="{odata>Author}" icon="{sap-icon://person-placeholder}" iconDensityAware="false" info="{i18n>CommentRating}: {odata>Rating}" timestamp="{
+                            path : 'odata>Posted',
+                            type : 'sap.ui.model.type.Date',
+                            formatOptions: {
+                                style : 'medium'
+                            }
+                        }" text="{odata>Message}" convertLinksToAnchorTags="All"/>
+                </List>
+            </FlexBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

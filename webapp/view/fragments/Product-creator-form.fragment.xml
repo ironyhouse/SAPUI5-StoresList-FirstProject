@@ -1,0 +1,141 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" >
+	<Dialog
+		id="Product-creator-form"
+		title="Create new product"
+		afterClose="onAfterClose">
+		<f:SimpleForm
+			maxContainerCols="1"
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="1"
+			columnsM="1">
+			<f:content>
+				<Label text="{i18n>ProductName}" labelFor="input-a"/>
+				<Input
+					value="{
+						path: 'Name',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 2,
+							maxLength: 15
+						}
+					}"
+					required="true"
+					placeholder="{i18n>ProducPlaceholdertName}" />
+
+				<Label text="{i18n>ProductPrice}"/>
+				<Input
+					value="{
+						path: 'Price',
+						type: 'sap.ui.model.type.Float',
+						formatOptions: {
+							decimals: 0
+						},
+						constraints: {
+							minimum: 1,
+							maximum: 100000000
+						}
+					}"
+					required="true"
+					fieldWidth="85%"
+					placeholder="{i18n>ProducPlaceholdertPrice}"
+					description="USD" />
+
+				<Label text="{i18n>ProductSpecs}"/>
+				<Input
+					value="{
+						path: 'Specs',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							maxLength: 255
+						}
+					}"
+					required="true"
+					placeholder="{i18n>ProducPlaceholdertSpecs}"/>
+
+				<Label text="{i18n>ProductRating}"/>
+				<Input
+					value="{
+						path: 'Rating',
+						type: 'sap.ui.model.type.Float',
+						formatOptions: {
+							decimals: 0
+						},
+						constraints: {
+							minimum: 1,
+							maximum: 5
+						}
+					}"
+					required="true"
+					placeholder="{i18n>ProducPlaceholdertRating}"/>
+
+				<Label text="{i18n>ProductSupplierInfo}"/>
+				<Input
+					value="{
+						path: 'SupplierInfo',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							maxLength: 255
+						}
+					}"
+					required="true"
+					placeholder="{i18n>ProducPlaceholdertSupplierInfo}"/>
+
+				<Label text="{i18n>ProductMadeIn}"/>
+				<Input
+					value="{
+						path: 'MadeIn',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							maxLength: 30
+						}
+					}"
+					required="true"
+					placeholder="{i18n>ProductPrice}"/>
+
+				<Label text="{i18n>ProducPlaceholdertMadeIn}"/>
+				<Input
+					value="{
+						path: 'ProductionCompanyName',
+						type: 'sap.ui.model.type.String',
+						constraints: {
+							minLength: 3,
+							maxLength: 30
+						}
+					}"
+					required="true"
+					placeholder="{i18n>ProducPlaceholdertCompany}"/>
+
+				<Label text="Status"/>
+				<Select
+					selectedKey="{Status}"
+					change="onSelect">
+					<core:Item key="OK" text="Ok" />
+					<core:Item key="STORAGE" text="Storage" />
+					<core:Item key="OUT_OF_STOCK" text="Out of stock" />
+				</Select>
+			</f:content>
+		</f:SimpleForm>
+
+		<buttons>
+			<Button
+				type="Emphasized"
+				text="{i18n>Create}"
+				press="onDialogCreateProductPress" />
+		</buttons>
+		<buttons>
+			<Button
+				text="{i18n>Cancel}"
+				press="onCancelCreateProductPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
